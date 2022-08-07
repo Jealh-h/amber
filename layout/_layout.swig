@@ -56,5 +56,9 @@
   {%- if theme.pjax %}
     </div>
   {%- endif %}
+  {% if theme.fireworks %}
+   <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas>
+   <script type="text/javascript" src="/js/fireworks.js"></script>
+  {% endif %}
 </body>
 </html>
