@@ -44,10 +44,6 @@ hexo.extend.filter.register('after_generate', () => {
   if (!theme.local_search.enable) {
     hexo.route.remove('js/local-search.js');
   }
-
-  if (theme.scheme === 'Muse' || theme.scheme === 'Mist') {
-    hexo.route.remove('js/schemes/pisces.js');
-  } else if (theme.scheme === 'Pisces' || theme.scheme === 'Gemini') {
-    hexo.route.remove('js/schemes/muse.js');
-  }
+  // 现在只有muse主题了，直接移除
+  hexo.route.remove('js/schemes/pisces.js');
 });

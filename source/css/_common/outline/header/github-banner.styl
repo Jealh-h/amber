@@ -34,27 +34,12 @@
       display: none;
     }
 
-    svg {
-      if (($scheme == 'Pisces') || ($scheme == 'Gemini')) {
-        color: $bg-color;
-        fill: white;
-      }
-    }
-
     .github-corner:hover .octo-arm {
       animation: none;
     }
 
     .github-corner .octo-arm {
       animation: octocat-wave 560ms ease-in-out;
-    }
-  }
-
-  if ($scheme == 'Mist') {
-    +mobile() {
-      svg {
-        top: inherit;
-      }
     }
   }
 }

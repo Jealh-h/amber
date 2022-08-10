@@ -24,11 +24,6 @@
     {%- if subtitle %}
       <p class="site-subtitle" itemprop="description">{{ subtitle }}</p>
     {%- endif %}
-    {%- if theme.custom_logo and (theme.scheme === 'Gemini' or theme.scheme === 'Pisces') %}
-      <a>
-        <img class="custom-logo-image" src="{{ theme.custom_logo }}" alt="{{ title }}">
-      </a>
-    {%- endif %}
   </div>
 
   <div class="site-nav-right">

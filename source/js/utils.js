@@ -45,7 +45,7 @@ NexT.utils = {
 
   registerExtURL: function() {
     document.querySelectorAll('span.exturl').forEach(element => {
-      let link = document.createElement('a');
+      const link = document.createElement('a');
       // https://stackoverflow.com/questions/30106476/using-javascripts-atob-to-decode-base64-doesnt-properly-decode-utf-8-strings
       link.href = decodeURIComponent(atob(element.dataset.url).split('').map(c => {
         return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
@@ -125,8 +125,8 @@ NexT.utils = {
         const box = document.createElement('div');
         box.className = 'video-container';
         element.wrap(box);
-        let width = Number(element.width);
-        let height = Number(element.height);
+        const width = Number(element.width);
+        const height = Number(element.height);
         if (width && height) {
           element.parentNode.style.paddingTop = (height / width * 100) + '%';
         }
@@ -219,13 +219,14 @@ NexT.utils = {
   },
 
   registerLangSelect: function() {
-    let selects = document.querySelectorAll('.lang-select');
+    const selects = document.querySelectorAll('.lang-select');
     selects.forEach(sel => {
       sel.value = CONFIG.page.lang;
       sel.addEventListener('change', () => {
-        let target = sel.options[sel.selectedIndex];
+        const target = sel.options[sel.selectedIndex];
+        // eslint-disable-next-line no-return-assign
         document.querySelectorAll('.lang-select-label span').forEach(span => span.innerText = target.text);
-        let url = target.dataset.href;
+        const url = target.dataset.href;
         window.pjax ? window.pjax.loadUrl(url) : window.location.href = url;
       });
     });
@@ -291,14 +292,14 @@ NexT.utils = {
 
     function createIntersectionObserver(marginTop) {
       marginTop = Math.floor(marginTop + 10000);
-      let intersectionObserver = new IntersectionObserver((entries, observe) => {
-        let scrollHeight = document.documentElement.scrollHeight + 100;
+      const intersectionObserver = new IntersectionObserver((entries, observe) => {
+        const scrollHeight = document.documentElement.scrollHeight + 100;
         if (scrollHeight > marginTop) {
           observe.disconnect();
           createIntersectionObserver(scrollHeight);
           return;
         }
-        let index = findIndex(entries);
+        const index = findIndex(entries);
         activateNavByIndex(navItems[index]);
       }, {
         rootMargin: marginTop + 'px 0px -100% 0px',
@@ -312,8 +313,8 @@ NexT.utils = {
   },
 
   hasMobileUA: function() {
-    let ua = navigator.userAgent;
-    let pa = /iPad|iPhone|Android|Opera Mini|BlackBerry|webOS|UCWEB|Blazer|PSP|IEMobile|Symbian/g;
+    const ua = navigator.userAgent;
+    const pa = /iPad|iPhone|Android|Opera Mini|BlackBerry|webOS|UCWEB|Blazer|PSP|IEMobile|Symbian/g;
     return pa.test(ua);
   },
 
@@ -330,10 +331,10 @@ NexT.utils = {
   },
 
   supportsPDFs: function() {
-    let ua = navigator.userAgent;
-    let isFirefoxWithPDFJS = ua.includes('irefox') && parseInt(ua.split('rv:')[1].split('.')[0], 10) > 18;
-    let supportsPdfMimeType = typeof navigator.mimeTypes['application/pdf'] !== 'undefined';
-    let isIOS = /iphone|ipad|ipod/i.test(ua.toLowerCase());
+    const ua = navigator.userAgent;
+    const isFirefoxWithPDFJS = ua.includes('irefox') && parseInt(ua.split('rv:')[1].split('.')[0], 10) > 18;
+    const supportsPdfMimeType = typeof navigator.mimeTypes['application/pdf'] !== 'undefined';
+    const isIOS = /iphone|ipad|ipod/i.test(ua.toLowerCase());
     return isFirefoxWithPDFJS || (supportsPdfMimeType && !isIOS);
   },
 
@@ -344,11 +345,10 @@ NexT.utils = {
   initSidebarDimension: function() {
     var sidebarNav = document.querySelector('.sidebar-nav');
     var sidebarNavHeight = sidebarNav.style.display !== 'none' ? sidebarNav.offsetHeight : 0;
-    var sidebarOffset = CONFIG.sidebar.offset || 12;
     var sidebarb2tHeight = CONFIG.back2top.enable && CONFIG.back2top.sidebar ? document.querySelector('.back-to-top').offsetHeight : 0;
     var sidebarSchemePadding = (CONFIG.sidebar.padding * 2) + sidebarNavHeight + sidebarb2tHeight;
     // Margin of sidebar b2t: -4px -10px -18px, brings a different of 22px.
-    if (CONFIG.scheme === 'Pisces' || CONFIG.scheme === 'Gemini') sidebarSchemePadding += (sidebarOffset * 2) - 22;
+
     // Initialize Sidebar & TOC Height.
     var sidebarWrapperHeight = document.body.offsetHeight - sidebarSchemePadding + 'px';
     document.querySelector('.site-overview-wrap').style.maxHeight = sidebarWrapperHeight;
@@ -368,7 +368,6 @@ NexT.utils = {
       document.querySelector('.sidebar-nav-overview').click();
     }
     NexT.utils.initSidebarDimension();
-    if (!this.isDesktop() || CONFIG.scheme === 'Pisces' || CONFIG.scheme === 'Gemini') return;
     // Expand sidebar on post detail page by default, when post has a toc.
     var display = CONFIG.page.sidebar;
     if (typeof display !== 'boolean') {
@@ -402,8 +401,8 @@ NexT.utils = {
       callback();
       return;
     }
-    let intersectionObserver = new IntersectionObserver((entries, observer) => {
-      let entry = entries[0];
+    const intersectionObserver = new IntersectionObserver((entries, observer) => {
+      const entry = entries[0];
       if (entry.isIntersecting) {
         callback();
         observer.disconnect();
