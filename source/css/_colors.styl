@@ -1,5 +1,5 @@
 // 套一层body是为了能用css变量处理暗黑模式，不然只能prefers-color-scheme了
-body {
+html {
   --body-bg-color: $body-bg-color;
   --content-bg-color: $content-bg-color;
   --card-bg-color: $card-bg-color;
@@ -21,7 +21,7 @@ body {
   --sidebar-drop-color: rgba(255,255,255,0.5);
 }
 
-body[data-theme='dark'] {
+html[data-theme='dark'] {
   --body-bg-color: $body-bg-color-dark;
   --content-bg-color: $content-bg-color-dark;
   --card-bg-color: $card-bg-color-dark;
