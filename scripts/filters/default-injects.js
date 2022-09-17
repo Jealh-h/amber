@@ -28,5 +28,5 @@ hexo.extend.filter.register(
 );
 
 hexo.extend.injector.register('body_end', () => {
-  return js('./theme.js');
+  return js('js/theme.js');
 });
