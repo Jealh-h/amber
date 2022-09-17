@@ -7,6 +7,8 @@
   <div class="site-description" itemprop="description">{{ description }}</div>
 </div>
 
+<div class="theme-toggle"></div>
+
 {%- if theme.site_state %}
 <div class="site-state-wrap motion-element">
   <nav class="site-state">
