@@ -39,7 +39,7 @@ The simplest way to install is to clone the entire repository:
 
 ```sh
 $ cd hexo
-$ git clone https://github.com/theme-next/hexo-theme-next themes/next
+$ git clone https://github.com/Jealh-h/amber.git themes/amber
 ```
 
 Or you can see [detailed installation instructions][docs-installation-url] if you want any other variant.
